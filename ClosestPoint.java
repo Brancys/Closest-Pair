@@ -1,3 +1,5 @@
+package closestpair;
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -7,7 +9,22 @@ import java.util.Scanner;
  */
 public class ClosestPoint {
 
-    // Driver code
+/*Lab Closest Pair – Java
+
+Brancys Barrios Suarez
+200137096
+
+Universidad del Norte
+
+Algoritmos y Complejidad
+NRC: 3264
+
+Noviembre 04/022
+
+Algoritmos de fuerza bruta y  recursivo que encuentran el par más cercano en un
+conjunto de datos de coordenadas (x, y) de seis elementos en Java.
+*/
+    
     public static void main(String[] args) {
         
         Scanner s = new Scanner(System.in); int x,y; boolean be;
