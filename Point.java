@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package closestpair;
 
 /**
  *
  * @author brancysb
  */
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -17,29 +12,58 @@ import java.util.Comparator;
 // given set of points.
 
 // A structure to represent a two coordinates Point 
-class Point {
-    public int x;
-    public int y;
+final class Point {
+    private int x;
+    private int y;
 
     Point(int x, int y) {
             this.x = x;
             this.y = y;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+    
+
     // A utility function to find the
     // distance between two points
-    public static float dist(Point p1, Point p2) {
-            return (float) Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) +
-                                                            (p1.y - p2.y) * (p1.y - p2.y)
-                                                            );
+    public static Double dist(Point p1, Point p2) {
+            return (Double) squareRoot((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
     }
+    
+   //Squared Root Method without Math class
+    public static double squareRoot(int num){  
+        //temporary variable  
+        double t;  
+        double sqrtroot=num/2;  
+        do{  
+        t=sqrtroot;  
+        sqrtroot=(t+(num/t))/2;  
+        } while((t-sqrtroot)!= 0);  
+        
+        return sqrtroot;  
+    }  
+
 
     // A Brute Force method to return the
     // smallest distance between two points
     // in P[] of size n
-    public static float bruteForce(Point[] P, int n) {
-            float min = Float.MAX_VALUE;
-            float currMin = 0;
+    public static Double bruteForce(Point[] P, int n) {
+            Double min = Double.MAX_VALUE;
+            Double currMin = 0.0;
 
             for (int i = 0; i < n; ++i) {
             for (int j = i + 1; j < n; ++j) {
@@ -61,8 +85,8 @@ class Point {
     // Note that this method seems to be
     // a O(n^2) method, but it's a O(n)
     // method as the inner loop runs at most 6 times
-    public static float stripClosest(Point[] strip, int size, float d) {
-            float min = d; // Initialize the minimum distance as d
+    public static Double stripClosest(Point[] strip, int size, Double d) {
+            Double min = d; // Initialize the minimum distance as d
 
             Arrays.sort(strip, 0, size, new PointYComparator());
 
@@ -83,7 +107,7 @@ class Point {
     // A recursive function to find the
     // smallest distance. The array P contains
     // all points sorted according to x coordinate
-    public static float closestUtil(Point[] P, int startIndex,int endIndex){
+    public static Double closestUtil(Point[] P, int startIndex,int endIndex){
 
             // If there are 2 or 3 points, then use brute force
             if ((endIndex - startIndex) <= 3) {
@@ -98,11 +122,11 @@ class Point {
             // through the middle point calculate
             // the smallest distance dl on left
             // of middle point and dr on right side
-            float dl = closestUtil(P, startIndex, mid);
-            float dr = closestUtil(P, mid, endIndex);
+            Double dl = closestUtil(P, startIndex, mid);
+            Double dr = closestUtil(P, mid, endIndex);
 
             // Find the smaller of two distances
-            float d = Math.min(dl, dr);
+            Double d = Math.min(dl, dr);
 
             // Build an array strip[] that contains
             // points close (closer than d)
@@ -124,7 +148,7 @@ class Point {
 
     // The main function that finds the smallest distance
     // This method mainly uses closestUtil()
-    public static float closest(Point[] P, int n) {
+    public static Double closest(Point[] P, int n) {
             Arrays.sort(P, 0, n, new PointXComparator());
 
             // Use recursive function closestUtil()
@@ -141,7 +165,7 @@ class PointXComparator implements Comparator<Point> {
     // according to X coordinate
     @Override
     public int compare(Point pointA, Point pointB) {
-            return Integer.compare(pointA.x, pointB.x);
+            return Integer.compare(pointA.getX(), pointB.getY());
     }
 
 }
@@ -152,7 +176,7 @@ class PointYComparator implements Comparator<Point> {
     // according to Y coordinate
     @Override
     public int compare(Point pointA, Point pointB) {
-            return Integer.compare(pointA.y, pointB.y);
+            return Integer.compare(pointA.getY(), pointB.getY());
     }
 
 }
