@@ -51,7 +51,7 @@ conjunto de datos de coordenadas (x, y) de seis elementos en Java.
     
     public static boolean search(int xa, int ya, Point[] array, int index){
         for (int i = 0; i < index; i++) {
-            if (array[i].x==xa & array[i].y==ya) {               
+            if (array[i].getX()==xa & array[i].getY()==ya) {               
                return true;                
             }
         }
