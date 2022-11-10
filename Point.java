@@ -12,11 +12,11 @@ import java.util.Comparator;
 // given set of points.
 
 // A structure to represent a two coordinates Point 
-final class Point {
+public class Point {
     private int x;
     private int y;
 
-    Point(int x, int y) {
+    public Point(int x, int y) {
             this.x = x;
             this.y = y;
     }
@@ -56,8 +56,20 @@ final class Point {
         
         return sqrtroot;  
     }  
-
-
+    public static double Minimun(double num1, double num2){  
+        if(num1<=num2)
+            return num1;
+       //return minimun of two double values
+        return num2;
+    }
+    
+    public static double AbsoluteValue(double num){    
+        if (num<0)
+            return (-1*num);
+        //return the Absolute Value of a Double number
+        return num;       
+    }
+    
     // A Brute Force method to return the
     // smallest distance between two points
     // in P[] of size n
@@ -126,7 +138,7 @@ final class Point {
             Double dr = closestUtil(P, mid, endIndex);
 
             // Find the smaller of two distances
-            Double d = Math.min(dl, dr);
+            Double d = Minimun(dl, dr);
 
             // Build an array strip[] that contains
             // points close (closer than d)
@@ -134,7 +146,7 @@ final class Point {
             Point[] strip = new Point[endIndex];
             int j = 0;
             for (int i = 0; i < endIndex; i++) {
-            if (Math.abs(P[i].x - midPoint.x) < d) {
+            if (AbsoluteValue(P[i].x - midPoint.x) < d) {
                     strip[j] = P[i];
                     j++;
             }
@@ -143,7 +155,7 @@ final class Point {
             // Find the closest points in strip.
             // Return the minimum of d and closest
             // distance is strip[]
-            return Math.min(d, stripClosest(strip, j, d));
+            return Minimun(d, stripClosest(strip, j, d));
     }
 
     // The main function that finds the smallest distance
@@ -180,7 +192,6 @@ class PointYComparator implements Comparator<Point> {
     }
 
 }
-
 
 
 
