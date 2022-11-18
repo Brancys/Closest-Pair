@@ -12,9 +12,9 @@ import java.util.Comparator;
 // given set of points.
 
 // A structure to represent a two coordinates Point 
-public class Point {
-    private int x;
-    private int y;
+public  final class Point {
+    final int x;
+    final int y;
 
     public Point(int x, int y) {
             this.x = x;
@@ -25,37 +25,18 @@ public class Point {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
     
 
     // A utility function to find the
     // distance between two points
     public static Double dist(Point p1, Point p2) {
-            return (Double) squareRoot((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+        dist = (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
+            return dist.doubleValue();
     }
-    
-   //Squared Root Method without Math class
-    public static double squareRoot(int num){  
-        //temporary variable  
-        double t;  
-        double sqrtroot=num/2;  
-        do{  
-        t=sqrtroot;  
-        sqrtroot=(t+(num/t))/2;  
-        } while((t-sqrtroot)!= 0);  
-        
-        return sqrtroot;  
-    }  
+     
     public static double Minimun(double num1, double num2){  
         if(num1<=num2)
             return num1;
